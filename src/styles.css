@@ -1,0 +1,162 @@
+/*
+ * Identidades visuais = blocos de variáveis. O padrão (:root) é a identidade "Corporativo".
+ * Para criar outra, copie um bloco [data-tema="..."], troque os valores e registre o id em src/lib/tema.ts.
+ */
+:root {
+  --bg: #0b1020;
+  --bg-2: #121a33;
+  --linha: #243055;
+  --fg: #eef2ff;
+  --fg-suave: #a9b4d6;
+  --g1: #3b5bdb;
+  --g2: #22d3ee;
+  --acento: #22d3ee;
+  --botao-fg: #06101f;
+  --fonte-titulo: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --fonte-corpo: 'Inter', system-ui, sans-serif;
+  --raio: 14px;
+  --brilho: 0 0 0 transparent;
+  --peso-titulo: 700;
+  --caixa-alta: none;
+  color-scheme: dark;
+}
+
+:root[data-tema='claro'] {
+  --bg: #f5f7ff;
+  --bg-2: #ffffff;
+  --linha: #d7def5;
+  --fg: #0e1530;
+  --fg-suave: #4a5578;
+  --g1: #3b5bdb;
+  --g2: #0891b2;
+  --acento: #3b5bdb;
+  --botao-fg: #ffffff;
+  color-scheme: light;
+}
+
+/* Inspirada no visual retrô dos anos 80 (neon, pôr do sol, grade). Sem marcas nem arte de terceiros. */
+:root[data-tema='miami'] {
+  --bg: #1a0b2e;
+  --bg-2: #2a1248;
+  --linha: #5a2a8f;
+  --fg: #fff1fb;
+  --fg-suave: #d9b8f0;
+  --g1: #ff3ea5;
+  --g2: #00e5ff;
+  --acento: #ff9e00;
+  --botao-fg: #1a0b2e;
+  --fonte-titulo: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --raio: 4px;
+  --brilho: 0 0 18px color-mix(in srgb, var(--g1) 70%, transparent);
+  --peso-titulo: 800;
+  --caixa-alta: uppercase;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  transition: background 0.3s, color 0.3s;
+}
+
+.miolo { max-width: 1080px; margin: 0 auto; }
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: var(--peso-titulo);
+  text-transform: var(--caixa-alta);
+  text-wrap: balance;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+
+/* Cabeçalho */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--linha);
+  margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: calc(10px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+}
+.topo-in { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+.marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-marca { flex: none; filter: drop-shadow(var(--brilho)); }
+.nome { font-family: var(--fonte-titulo); font-weight: var(--peso-titulo); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1; }
+.nome small { display: block; font-family: var(--fonte-corpo); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.32em; color: var(--fg-suave); margin-top: 5px; }
+.temas { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--linha); border-radius: calc(var(--raio) + 4px); background: var(--bg-2); }
+.temas button { font: inherit; font-size: 0.85rem; font-weight: 500; color: var(--fg-suave); background: transparent; border: 0; padding: 8px 12px; border-radius: var(--raio); cursor: pointer; min-height: 40px; }
+.temas button[aria-pressed='true'] { color: var(--botao-fg); background: linear-gradient(120deg, var(--g1), var(--g2)); box-shadow: var(--brilho); }
+
+/* Hero */
+.hero { position: relative; padding-block: clamp(56px, 10vw, 110px); overflow: hidden; isolation: isolate; }
+.hero-fundo { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.grade {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--linha) 1px, transparent 1px), linear-gradient(90deg, var(--linha) 1px, transparent 1px);
+  background-size: 44px 44px; opacity: 0.45;
+  mask-image: radial-gradient(ellipse at 70% 30%, #000 20%, transparent 75%);
+}
+.sol, .piso { display: none; }
+:root[data-tema='miami'] .grade { display: none; }
+:root[data-tema='miami'] .sol {
+  display: block; position: absolute; right: -8%; top: 4%; width: min(420px, 56vw); opacity: 0.5; aspect-ratio: 1; border-radius: 50%;
+  background: linear-gradient(180deg, var(--acento) 0%, var(--g1) 100%);
+  box-shadow: 0 0 90px color-mix(in srgb, var(--g1) 60%, transparent);
+  mask-image: linear-gradient(180deg, #000 0 55%, transparent 55% 60%, #000 60% 72%, transparent 72% 78%, #000 78% 87%, transparent 87% 94%, #000 94%);
+}
+:root[data-tema='miami'] .piso {
+  display: block; position: absolute; left: -20%; right: -20%; bottom: -2%; height: 42%;
+  background-image: linear-gradient(var(--g2) 1px, transparent 1px), linear-gradient(90deg, var(--g2) 1px, transparent 1px);
+  background-size: 56px 56px; transform: perspective(300px) rotateX(58deg); transform-origin: bottom; opacity: 0.35;
+  mask-image: linear-gradient(0deg, #000 30%, transparent);
+}
+.selo { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--acento); border: 1px solid var(--linha); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px; }
+.hero h1 { font-size: clamp(2rem, 5.6vw, 3.6rem); max-width: 18ch; }
+.hero h1 em { font-style: normal; background: linear-gradient(120deg, var(--g1), var(--g2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .sub { margin-top: 22px; max-width: 58ch; font-size: 1.1rem; color: var(--fg-suave); }
+.botao {
+  display: inline-flex; align-items: center; min-height: 48px; margin-top: 30px; padding: 12px 24px;
+  font: inherit; font-weight: 600; text-decoration: none; color: var(--botao-fg);
+  background: linear-gradient(120deg, var(--g1), var(--g2)); border-radius: var(--raio); border: 0; box-shadow: var(--brilho); cursor: pointer; text-transform: var(--caixa-alta);
+}
+:root[data-tema='miami'] .botao { letter-spacing: 0.06em; font-family: var(--fonte-titulo); font-size: 0.9rem; }
+
+/* Seções */
+.bloco { padding-block: clamp(40px, 7vw, 72px); border-top: 1px solid var(--linha); }
+.rotulo { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acento); margin-bottom: 12px; }
+.bloco h2 { font-size: clamp(1.5rem, 3.4vw, 2.2rem); max-width: 24ch; }
+.intro { margin-top: 14px; color: var(--fg-suave); max-width: 62ch; }
+.grid { display: grid; gap: 16px; margin-top: 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.card { min-width: 0; background: var(--bg-2); border: 1px solid var(--linha); border-radius: var(--raio); padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.card h3 { font-size: 1.1rem; }
+.card p { color: var(--fg-suave); font-size: 0.95rem; }
+.etiqueta { align-self: flex-start; margin-top: auto; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--acento); border: 1px solid var(--linha); padding: 4px 10px; border-radius: 999px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links:empty { display: none; }
+.link { font-size: 0.85rem; font-weight: 600; text-decoration: none; color: var(--fg); border: 1px solid var(--linha); border-radius: var(--raio); padding: 8px 14px; min-height: 40px; display: inline-flex; align-items: center; }
+.link:hover { border-color: var(--acento); color: var(--acento); }
+.pacote .dor { color: var(--fg); font-weight: 500; }
+.prova { display: grid; gap: 28px; margin-top: 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
+.bio { background: var(--bg-2); border: 1px solid var(--linha); border-radius: var(--raio); padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.bio p { color: var(--fg-suave); }
+.bio .cargo { color: var(--acento); font-weight: 600; }
+.prova ul { margin: 0; padding-left: 20px; color: var(--fg-suave); display: grid; gap: 8px; }
+.numero { display: inline-block; margin-top: 18px; padding: 10px 14px; border: 1px dashed var(--linha); border-radius: var(--raio); font-family: ui-monospace, Menlo, monospace; font-size: 0.9rem; color: var(--fg-suave); }
+footer { border-top: 1px solid var(--linha); padding-block: 28px calc(40px + env(safe-area-inset-bottom, 0px)); color: var(--fg-suave); font-size: 0.85rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
