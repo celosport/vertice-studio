@@ -39,7 +39,7 @@ O visual "Neon Miami" é inspirado no estilo retrô dos anos 80. Não usa marca,
 ## Publicar no Railway
 
 1. Suba para o GitHub.
-2. No Railway: **New Project → Deploy from GitHub repo**. O `railway.json` já define o build e o start.
+2. No Railway: **New Project → Deploy from GitHub repo**. O `railway.json` usa o `Dockerfile` (Node 22, exigido pelo Vite 8).
 3. Em **Settings → Networking**, gere o domínio (ou ligue o seu).
 
 ## Antes de divulgar
