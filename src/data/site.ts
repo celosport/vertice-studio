@@ -43,22 +43,24 @@ export const site = {
       descricao: 'Controle de custos e acompanhamento ao vivo de agentes de IA, com escritório animado.',
       etiqueta: 'IA · global',
       site: 'https://agent-desk.up.railway.app/',
-      codigo: 'https://github.com/celosport/agent-desk',
     },
     {
       nome: 'SafetyWorkControl',
       descricao: 'Gestão de EPIs e conformidade com a NR-6 para empresas.',
       etiqueta: 'Segurança do trabalho',
+      site: 'https://safetyworkcontrol.com/',
     },
     {
       nome: 'PulseFit',
       descricao: 'Gestão, treinos e cobrança recorrente por Pix para personal trainers e estúdios.',
       etiqueta: 'Fitness',
+      site: 'https://pulsefitapp.up.railway.app/',
     },
     {
       nome: 'Zena',
       descricao: 'Agendamento automático e CRM para salões e clínicas de estética.',
       etiqueta: 'Beleza e estética',
+      site: 'https://zena.up.railway.app/',
     },
   ] as Produto[],
 
