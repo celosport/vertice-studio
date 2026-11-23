@@ -27,7 +27,7 @@ describe('lerTema', () => {
 describe('dados do site', () => {
   it('todo link informado é https', () => {
     const links = site.produtos.flatMap((p) => [p.site, p.demo, p.codigo]).filter((l): l is string => !!l);
-    for (const l of [...links, site.prova.github, site.prova.linkedin]) expect(l).toMatch(/^https:\/\//);
+    for (const l of links) expect(l).toMatch(/^https:\/\//);
   });
   it('o WhatsApp comercial gera um link válido (55 + DDD 21)', () => {
     expect(linkWhatsApp(site.whatsapp, site.mensagemWhatsapp)).toMatch(/^https:\/\/wa\.me\/5521997323765\?text=/);

@@ -79,10 +79,6 @@ export function Prova() {
           <h3>{p.nome}</h3>
           <p className="cargo">{p.cargo}</p>
           <p>{p.resumo}</p>
-          <div className="links">
-            <Externo href={p.github}>GitHub</Externo>
-            <Externo href={p.linkedin}>LinkedIn</Externo>
-          </div>
         </div>
         <ul>
           {p.pontos.map((t) => (

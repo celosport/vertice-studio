@@ -91,7 +91,5 @@ export const site = {
       'Testes automatizados de ponta a ponta.',
       'Projetos publicados e código aberto no GitHub.',
     ],
-    github: 'https://github.com/celosport',
-    linkedin: 'https://www.linkedin.com/in/marcelo-moreira-de-lima-b9044441',
   },
 };
