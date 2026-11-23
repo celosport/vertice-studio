@@ -25,7 +25,7 @@ export const site = {
   nome: 'Vértice',
   sufixo: 'Studio',
   /** Só números, com país e DDD. Ex.: 5511999998888. Vazio = o botão leva ao bloco de contato. */
-  whatsapp: '',
+  whatsapp: '5521997323765',
   mensagemWhatsapp: 'Olá! Quero agendar um diagnóstico gratuito.',
   email: '',
 
